@@ -1,0 +1,32 @@
+{% extends "awgtgl/base.html" %}
+
+{% block navbar %}
+<ul class="nav nav-pills">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li class="active"><a href="">Pathfinder</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+ </ul>
+{% endblock %}
+
+{% block content %}
+	<style type="text/css">
+		
+	</style>
+
+	<h1 class="header">Pathfinder</h1>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div id="map" style="width: 500px; height: 400px;" class="center-block" onload="initalize()"></div>
+			<input id="zip" type="text" placeholder="Enter a location or ZIP!" autocomplete="off" onkeydown="if (event.keyCode == 13) codeZip()" class="center-block" >
+			<input type="submit" value="I'm feeling lucky" onclick="plotrandom(5)" class="center-block pathfinder-submit">
+		</div>
+		<div class="col-md-6">
+			<h2>Your log</h2>
+			<input id="writer" type="text" placeholder="What are you feeling?" autocomplete="off" onkeydown="if (event.keyCode == 13) writeInJournal()" class="center-block" >
+			<ul class="journal" id="journal" class="center-block">
+				
+			</ul>
+		</div>
+	</div>
+{% endblock %}
