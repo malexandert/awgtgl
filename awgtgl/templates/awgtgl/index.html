@@ -1,0 +1,40 @@
+{% extends "awgtgl/base.html" %}
+
+{% block navbar %}
+<ul class="nav nav-pills">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="{% url 'pathfinder' %}">Pathfinder</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+ </ul>
+{% endblock %}
+
+{% block content %}
+	<style type="text/css">
+		body {background-color: #141414}
+		h1,p {color: white; text-align: center;}
+		img {display: block; margin: 0 auto;}
+		h2 {text-align: center; color: white;}
+		a {text-align: center;}
+		.hotlinks {margin: 0px auto;}
+	</style>
+
+	<h1>A Web Guide To Getting Lost</h1>
+	<p><i>"Every walker is a guard on patrol to protect the ineffable."</i> -Rebecca Solnit, <i>Wanderlust</i></p>
+
+	<div class="container-fluid hotlinks" style="height: 500px">
+		<div class="row">
+			<div class="col-md-6">
+				<a href="">
+					<img src="../static/images/journal-ico.png" class="img-thumbnail center-block" alt="Journal Image" width="140" height="140" align="middle">
+				</a>
+				<h2>Journals</h2>
+			</div>
+			<div class="col-md-6">
+				<a href="{% url 'pathfinder' %}">
+					<img src="../static/images/map-ico.png" class="img-thumbnail center-block" alt="Map Image" width="140" height="140">
+				</a>
+				<h2>Pathfinder</h2>
+			</div>
+		</div>
+	</div>
+{% endblock %}

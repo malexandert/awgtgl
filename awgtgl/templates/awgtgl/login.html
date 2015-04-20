@@ -1,0 +1,28 @@
+{% extends "awgtgl/base.html" %}
+
+{% block content %}    
+    {% if form.errors %}
+        <p style="color:red">
+            Incorrect user name and password.
+        </p>
+    {% endif %}
+
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        <table class="login-form">
+            <tr>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+
+        <div class='submit-register'>
+            <input type="submit" value="Login" />
+            
+            <a href="{% url 'register' %}">Join our family</a>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% csrf_token %}
+    </form>
+{% endblock %}

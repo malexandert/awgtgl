@@ -1,0 +1,14 @@
+{% extends "awgtgl/base.html" %}
+
+{% block content %}
+    <p>The first step on your new journey</p>
+
+    <form method="post" action="{% url 'register' %}">
+        <table>
+            {{form}}
+        </table>
+
+        <input type="submit" value="Register" />
+        {% csrf_token %}
+    </form>
+{% endblock %}
