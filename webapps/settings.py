@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import ConfigParser
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -25,7 +27,6 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -52,6 +53,10 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'webapps.urls'
 
 WSGI_APPLICATION = 'webapps.wsgi.application'
+
+LOGIN_URL = '/login'
+
+LOGIN_REDIRECT_URL = '/'
 
 
 # Database
@@ -82,3 +87,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+config = ConfigParser.ConfigParser()
+config.read('config.ini')
+
+EMAIL_HOST = config.get('Email', 'Host')
+EMAIL_PORT = config.get('Email', 'Port')
+EMAIL_HOST_USER = config.get('Email', 'User')
+EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
+EMAIL_USE_SSL = True
