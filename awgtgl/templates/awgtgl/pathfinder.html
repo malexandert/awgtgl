@@ -19,6 +19,7 @@
 		<div class="col-md-6">
 			<div id="map" style="width: 500px; height: 400px;" class="center-block" onload="initalize()"></div>
 			<input id="zip" type="text" placeholder="Enter a location or ZIP!" autocomplete="off" onkeydown="if (event.keyCode == 13) codeZip()" class="center-block" >
+			<input type="submit" value="Submit zip" onclick="codeZip()" class="center-block pathfinder-submit">
 			<input type="submit" value="I'm feeling lucky" onclick="plotrandom(5)" class="center-block pathfinder-submit">
 		</div>
 		<div class="col-md-6">
