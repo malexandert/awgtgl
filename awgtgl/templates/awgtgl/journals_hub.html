@@ -13,9 +13,9 @@
     <h1 class="header">Journals</h1>
 
     <div class="row">
-        {% for map in maps %}
+        {% for image,journal in journals %}
             <div class="col-md-12">
-
+                <a href="{% url 'view_journal' journal.id %}"><img src="{{image}}"></a>
             </div>
         {% endfor %}
     </div>

@@ -3,10 +3,10 @@ var geocoder;
 var walkPath;
 var arrMarkers=new Array(0);
 var bounds;
-var randcoords = [];
+var encodedPath = "";
 
-function mapToUrl(map) {
-  var latlangstr = map.getCenter().toUrlValue();
+function mapToUrl(pathEnc) {
+  return "https://maps.googleapis.com/maps/api/staticmap?size=900x400&path=weight:3%7Ccolor:blue%7Cenc:" + pathEnc;
 }
 
 function initialize() {
@@ -49,7 +49,7 @@ function codeZip() {
 
 function writeInJournal() {
 	var text = document.getElementById("writer")
-	var journal = document.getElementById("journal");
+	var journal = document.getElementById("journal ");
 
 	var newEntry = document.createElement("li")
 	newEntry.innerHTML = "\"" + text.value + "\""
@@ -57,7 +57,6 @@ function writeInJournal() {
 	journal.insertBefore(newEntry, journal.firstChild);
 
 	text.value =""
-
 }
 
 function plotrandom(number) {
@@ -89,8 +88,7 @@ function plotrandom(number) {
 		marker.setMap(map);
 	}
 
-  var encodedPath = google.maps.geometry.encoding.encodePath(pointsrand);
-  console.log(encodedPath);
+  encodedPath = google.maps.geometry.encoding.encodePath(pointsrand);
 
 	walkPath = new google.maps.Polyline({
 		path:pointsrand,
@@ -101,6 +99,8 @@ function plotrandom(number) {
 
 	walkPath.setMap(map)
 
+	$("#journals").prop("disabled", false);
+	$("#mapurl").val(mapToUrl(encodedPath));
 }
 
 function placeMarker(location,text) {
@@ -111,6 +111,15 @@ function placeMarker(location,text) {
 		draggable:false
 	});
 	return marker;
+}
+
+function makeJournal() {
+  var mapurl = mapToUrl(encodedPath);
+  $.ajax({
+    url : "/make_journal",
+    type: "POST",
+    data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value, url: mapurl}
+  });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

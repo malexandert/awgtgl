@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Journal(models.Model):
 	user = models.ForeignKey(User)
-	name = models.CharField(blank=True, max_length=100)
+ 	mapurl = models.URLField()
 
 class Entry(models.Model):
 	journal = models.ForeignKey(Journal)

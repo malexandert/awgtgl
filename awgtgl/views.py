@@ -28,12 +28,28 @@ def pathfinder(request):
 	return render(request, 'awgtgl/pathfinder.html', {})
 
 @login_required
-def open_journal(request):
+def journals_hub(request):
+	context = {}
+	journals = Journal.objects.filter(user=request.user)
+	journal_imgs = []
+	for journal in journals:
+		journal_imgs.append((journal.mapurl, journal))
+	context['journals'] = journal_imgs
+	return render(request, 'awgtgl/journals_hub.html', context)
+
+@login_required
+def make_journal(request):
+  new_journal = Journal(user=request.user,
+                        mapurl=request.POST['mapurl'])
+  new_journal.save()
+  return redirect(reverse('journals'))
+
+@login_required
+def view_journal(request, id):
 	pass
 
 @transaction.atomic
 def register(request):
-
 	context = {}
 
 	if request.method == 'GET':

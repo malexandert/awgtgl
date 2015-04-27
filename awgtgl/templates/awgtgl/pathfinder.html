@@ -4,14 +4,12 @@
 <ul class="nav nav-pills">
     <li><a href="{% url 'home' %}">Home</a></li>
     <li class="active"><a href="">Pathfinder</a></li>
+    <li><a href="{% url 'journals' %}">Journals</a></li>
     <li><a href="{% url 'logout' %}">Logout</a></li>
  </ul>
 {% endblock %}
 
 {% block content %}
-	<style type="text/css">
-
-	</style>
 
 	<h1 class="header">Pathfinder</h1>
 
@@ -21,6 +19,11 @@
 			<input id="zip" type="text" placeholder="Enter a location or ZIP!" autocomplete="off" onkeydown="if (event.keyCode == 13) codeZip()" class="center-block" >
 			<input type="submit" value="Submit zip" onclick="codeZip()" class="center-block pathfinder-submit">
 			<input type="submit" value="I'm feeling lucky" onclick="plotrandom(5)" class="center-block pathfinder-submit">
+			<form action="{% url 'make_journal' %}" method="POST">
+				<input id="mapurl" name="mapurl" type="hidden" value="">
+				<input id="journals" type="submit" value="Create a journal!" disabled class="center-block pathfinder-submit">
+				{% csrf_token %}
+			</form>
 		</div>
         <!--
 		<div class="col-md-6">
@@ -32,5 +35,8 @@
 			</ul>
 		</div>
         -->
+	</div>
+	<div class="row" display="hidden">
+
 	</div>
 {% endblock %}
