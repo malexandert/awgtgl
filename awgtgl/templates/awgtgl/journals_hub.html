@@ -15,7 +15,7 @@
     <div class="row">
         {% for image,journal in journals reversed %}
             <div class="col-md-12" style="margin-bottom: 10px;">
-                <a href="{% url 'view_journal' journal.id %}"><img src="{{image}}"></a>
+                <a href="{% url 'view_journal' journal.id %}"><img class="img-responsive" src="{{image}}"></a>
             </div>
         {% endfor %}
     </div>

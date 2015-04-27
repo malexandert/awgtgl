@@ -15,7 +15,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<div id="map" style="width: 500px; height: 400px;" class="center-block" onload="initalize()"></div>
+			<div id="map" style="width: 100%; height: 300px;" class="center-block" onload="initalize()"></div>
 			<input id="zip" type="text" placeholder="Enter a location or ZIP!" autocomplete="off" onkeydown="if (event.keyCode == 13) codeZip()" class="center-block" >
 			<input type="submit" value="Submit zip" onclick="codeZip()" class="center-block pathfinder-submit">
 			<input type="submit" value="I'm feeling lucky" onclick="plotrandom(5)" class="center-block pathfinder-submit">
@@ -25,16 +25,6 @@
 				{% csrf_token %}
 			</form>
 		</div>
-        <!--
-		<div class="col-md-6">
-			<h2>Your log</h2>
-			<input id="writer" type="text" placeholder="What are you feeling?" autocomplete="off" onkeydown="if (event.keyCode == 13) writeInJournal()" class="center-block" >
-			<input type="submit" value="Go" onclick="writeInJournal()" class="center-block pathfinder-submit">
-			<ul class="journal" id="journal" class="center-block">
-
-			</ul>
-		</div>
-        -->
 	</div>
 	<div class="row" display="hidden">
 
