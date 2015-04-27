@@ -14,7 +14,7 @@
 
     <div class="row">
         {% for image,journal in journals %}
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-bottom: 10px;">
                 <a href="{% url 'view_journal' journal.id %}"><img src="{{image}}"></a>
             </div>
         {% endfor %}

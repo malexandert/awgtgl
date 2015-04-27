@@ -46,7 +46,12 @@ def make_journal(request):
 
 @login_required
 def view_journal(request, id):
-	pass
+	context = {}
+	journal = Journal.objects.get(id=id)
+	textentries = TextEntry.objects.filter(journal=journal)
+	context['mapurl'] = journal.mapurl
+	context['textentries'] = textentries
+	return render(request, 'awgtgl/journal.html', context)
 
 @transaction.atomic
 def register(request):

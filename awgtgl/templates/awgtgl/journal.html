@@ -10,14 +10,22 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="header">Journals</h1>
+    <h1 class="header">View Journal</h1>
 
     <div class="row">
-        {% for map in maps %}
-            <div class="col-md-12">
-
-            </div>
-        {% endfor %}
+        <div class="col-md-12">
+            <img src="{{mapurl}}">
+        </div>
+        <div class="col-md-12">
+            <h2>Your log</h2>
+            <input id="writer" type="text" placeholder="What are you feeling?" autocomplete="off" class="center-block" >
+            <input type="submit" value="Go" class="center-block pathfinder-submit">
+            <ul class="journal" id="journal" class="center-block">
+                {% for entry in textentries reversed %}
+                    {{entry}}
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
 {% endblock %}
