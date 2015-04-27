@@ -1,5 +1,6 @@
 body {
-	background-color: #141414
+	background-color: #141414;
+	color: white;
 }
 
 h1,p {
@@ -26,7 +27,7 @@ a {
 	margin-bottom: 30px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
 	border: none;
 	vertical-align: center;
 	border-radius: 10px;

@@ -34,6 +34,7 @@ def journals_hub(request):
 	journal_imgs = []
 	for journal in journals:
 		journal_imgs.append((journal.mapurl, journal))
+	context['username'] = request.user.username
 	context['journals'] = journal_imgs
 	return render(request, 'awgtgl/journals_hub.html', context)
 
