@@ -4,7 +4,7 @@
 <ul class="nav nav-pills">
     <li><a href="{% url 'home' %}">Home</a></li>
     <li><a href="{% url 'pathfinder' %}">Pathfinder</a></li>
-    <li class="active"><a href="">Journals</a></li>
+    <li><a href="{% url 'journals' %}">Journals</a></li>
     <li><a href="{% url 'logout' %}">Logout</a></li>
  </ul>
 {% endblock %}
@@ -18,11 +18,16 @@
         </div>
         <div class="col-md-12">
             <h2>Your log</h2>
-            <input id="writer" type="text" placeholder="What are you feeling?" autocomplete="off" class="center-block" >
-            <input type="submit" value="Go" class="center-block pathfinder-submit">
-            <ul class="journal" id="journal" class="center-block">
+            <form action="{% url 'write' journal.id %}" method="post">
+                <input id="writer" name="textentry" type="text" placeholder="What are you feeling?" autocomplete="off" class="center-block" >
+                <input type="submit" value="Go" class="center-block pathfinder-submit">
+                {% csrf_token %}
+            </form>
+            <ul class="journal" id="journal" class="center-block" style="margin-top: 10px;">
                 {% for entry in textentries reversed %}
+                <li>
                     {{entry}}
+                </li>
                 {% endfor %}
             </ul>
         </div>

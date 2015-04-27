@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^confirm-registration/(?P<username>[a-zA-Z0-9_@\+\-]+)/(?P<token>[a-z0-9\-]+)$', 'awgtgl.views.confirm_registration', name='confirm'),
 	url(r'^pathfinder$', 'awgtgl.views.pathfinder', name='pathfinder'),
 	url(r'^make_journal$', 'awgtgl.views.make_journal', name='make_journal'),
+	url(r'^write/(?P<id>\d+)$', 'awgtgl.views.write', name='write'),
 	url(r'^journals$', 'awgtgl.views.journals_hub', name='journals'),
 	url(r'^journal/(?P<id>\d+)$', 'awgtgl.views.view_journal', name='view_journal')
 )

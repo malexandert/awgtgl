@@ -49,9 +49,20 @@ def view_journal(request, id):
 	context = {}
 	journal = Journal.objects.get(id=id)
 	textentries = TextEntry.objects.filter(journal=journal)
+	context['journal'] = journal
 	context['mapurl'] = journal.mapurl
 	context['textentries'] = textentries
 	return render(request, 'awgtgl/journal.html', context)
+
+@login_required
+def write(request, id):
+	context = {}
+	journal = Journal.objects.get(id=id)
+	new_entry = TextEntry(text=request.POST['textentry'],
+						  timestamp=datetime.now(),
+						  journal=journal)
+	new_entry.save()
+	return redirect(reverse('view_journal', kwargs={'id': journal.id}))
 
 @transaction.atomic
 def register(request):

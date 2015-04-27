@@ -17,4 +17,4 @@ class TextEntry(Entry):
 	text = models.TextField(blank=True)
 
 	def __unicode__(self):
-		return
+		return self.text

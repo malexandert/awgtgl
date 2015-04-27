@@ -90,3 +90,9 @@ input[type='submit'] {
 	word-wrap: break-word;
 	color: white;
 }
+
+.journal li {
+	text-align: center;
+	margin: 10px auto;
+	background-color: #333333;
+}
