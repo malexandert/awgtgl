@@ -3,6 +3,11 @@ var geocoder;
 var walkPath;
 var arrMarkers=new Array(0);
 var bounds;
+var randcoords = [];
+
+function mapToUrl(map) {
+  var latlangstr = map.getCenter().toUrlValue();
+}
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
@@ -17,7 +22,7 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
 }
 
-function ftn_button_clicked() {
+function ftnButtonClicked() {
 	if (arrMarkers) {
 		for (i in arrMarkers) {
 			arrMarkers[i].setMap(null);
@@ -49,7 +54,7 @@ function writeInJournal() {
 	var newEntry = document.createElement("li")
 	newEntry.innerHTML = "\"" + text.value + "\""
 
-	journal.appendChild(newEntry)
+	journal.insertBefore(newEntry, journal.firstChild);
 
 	text.value =""
 
@@ -71,7 +76,9 @@ function plotrandom(number) {
 	pointsrand=[];
 
 	for(var i=0; i<number; i++) {
-		var point = new google.maps.LatLng(southWest.lat() + latSpan * Math.random(),southWest.lng() + lngSpan * Math.random());
+    var randLat = southWest.lat() + latSpan * Math.random();
+    var randLong = southWest.lng() + lngSpan * Math.random()
+		var point = new google.maps.LatLng(randLat,randLong);
 		pointsrand.push(point);
 	}
 
@@ -81,6 +88,9 @@ function plotrandom(number) {
 		arrMarkers.push(marker);
 		marker.setMap(map);
 	}
+
+  var encodedPath = google.maps.geometry.encoding.encodePath(pointsrand);
+  console.log(encodedPath);
 
 	walkPath = new google.maps.Polyline({
 		path:pointsrand,
@@ -93,7 +103,7 @@ function plotrandom(number) {
 
 }
 
-function placeMarker(location,text) { 
+function placeMarker(location,text) {
 	var marker = new google.maps.Marker({
 		position: location,
 		map: map,

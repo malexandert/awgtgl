@@ -46,10 +46,10 @@ def register(request):
 	if not form.is_valid():
 		return render(request, 'awgtgl/register.html', context)
 
-	new_user = User.objects.create_user(first_name=form.cleaned_data['first_name'], 
+	new_user = User.objects.create_user(first_name=form.cleaned_data['first_name'],
     									last_name=form.cleaned_data['last_name'],
-    									email=form.cleaned_data['email'], 
-    									username=form.cleaned_data['username'], 
+    									email=form.cleaned_data['email'],
+    									username=form.cleaned_data['username'],
     									password=form.cleaned_data['password1'])
 	new_user.is_active = False
 	new_user.save()
@@ -69,9 +69,9 @@ Staff - A Web Guide to Getting Lost
 	   reverse('confirm', args=(new_user.username, token)))
 
 	send_mail(subject='Welcome to AWGtGL!',
-			  message=email_body,
-			  from_email='enter@awgtgl.com',
-			  recipient_list=[new_user.email])
+			      message=email_body,
+			      from_email='malexandert@cmu.edu',
+			      recipient_list=[new_user.email])
 
 	context['email'] = form.cleaned_data['email']
 	return render(request, 'awgtgl/needs-confirmation.html', context)
